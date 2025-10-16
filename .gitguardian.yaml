@@ -1,0 +1,5 @@
+secret:
+  ignored_paths:
+  - .git*
+  - .env
+version: 2
