@@ -34,6 +34,18 @@ jobs:
           ssh-keyscan -p "${SSH_PORT}" -H "${SSH_IP}" >> ~/.ssh/known_hosts 2>/dev/null
           chmod 600 ~/.ssh/known_hosts
 
+      - name: Git Fetch
+        run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/url-shortener-laravel.codewithross.app && git fetch'
+
+      - name: Git Pull
+        run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/url-shortener-laravel.codewithross.app && git pull'
+
+      - name: Git Reset
+        run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/url-shortener-laravel.codewithross.app && git reset --hard'
+
+      - name: Git Pull
+        run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/url-shortener-laravel.codewithross.app && git pull'
+
       - name: Ensure .env exists (and generate key if created)
         run: |
           ssh -p "$SSH_PORT" "$SSH_USER@$SSH_IP" '
@@ -47,6 +59,7 @@ jobs:
       - name: Composer Install
         run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/url-shortener-laravel.codewithross.app && composer install || exit 1'
 
+      # SQLite
       - name: Prepare SQLite and migrate
         run: |
           ssh -p "$SSH_PORT" "$SSH_USER@$SSH_IP" '
@@ -64,5 +77,6 @@ jobs:
             php artisan queue:table || true
 
             # Run migrations
-            php artisan migrate --force
+            php artisan migrate:fresh --force
+            php artisan db:seed --force
           '
