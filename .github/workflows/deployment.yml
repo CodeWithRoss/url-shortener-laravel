@@ -46,3 +46,23 @@ jobs:
 
       - name: Composer Install
         run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/laravel-api-codewithross.app && composer install'
+
+      - name: Prepare SQLite and migrate
+        run: |
+          ssh -p "$SSH_PORT" "$SSH_USER@$SSH_IP" '
+            set -e
+            cd ~/repository/laravel-api-codewithross.app
+
+            # Ensure database file exists
+            mkdir -p database
+            [ -f database/database.sqlite ] || touch database/database.sqlite
+            chmod 664 database/database.sqlite || true
+
+            # Generate tables for session/cache/queue if using database drivers
+            php artisan session:table || true
+            php artisan cache:table || true
+            php artisan queue:table || true
+
+            # Run migrations
+            php artisan migrate --force
+          '
