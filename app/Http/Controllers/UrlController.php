@@ -6,6 +6,7 @@ use App\Models\Url;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class UrlController extends Controller
 {
@@ -13,6 +14,7 @@ class UrlController extends Controller
      * @param Request $request
      *
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function __invoke(Request $request): JsonResponse
     {
@@ -23,11 +25,11 @@ class UrlController extends Controller
 
         $code = $data['code'] ?? $this->generateUniqueCode();
 
-//        if (Url::where('code', $code)->exists()) {
-//            throw ValidationException::withMessages([
-//                'custom_code' => ['This code is already taken.'],
-//            ]);
-//        }
+        if (Url::where('code', $code)->exists()) {
+            throw ValidationException::withMessages([
+                'custom_code' => ['This code is already taken.'],
+            ]);
+        }
 
         $url = Url::create([
             'original' => $data['url'],
