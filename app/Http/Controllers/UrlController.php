@@ -17,11 +17,11 @@ class UrlController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         $data = $request->validate([
-            'url'         => ['required', 'url', 'max:2048'],
-            'custom_code' => ['nullable', 'alpha_num', 'min:3', 'max:16'],
+            'url'  => ['required', 'url', 'max:2048'],
+            'code' => ['nullable', 'alpha_num', 'min:3', 'max:16'],
         ]);
 
-        $code = $data['custom_code'] ?? $this->generateUniqueCode();
+        $code = $data['code'] ?? $this->generateUniqueCode();
 
 //        if (Url::where('code', $code)->exists()) {
 //            throw ValidationException::withMessages([
@@ -36,7 +36,7 @@ class UrlController extends Controller
 
         return response()->json([
             'code'      => $url->code,
-            'short_url' => url('/r/' . $url->code),
+            'short_url' => url('/' . $url->code),
             'original'  => $url->original,
         ], 201);
     }
