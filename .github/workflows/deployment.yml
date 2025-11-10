@@ -45,7 +45,7 @@ jobs:
           '
 
       - name: Composer Install
-        run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/url-shortener-laravel.codewithross.app && composer install'
+        run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/url-shortener-laravel.codewithross.app && composer install || exit 1'
 
       - name: Prepare SQLite and migrate
         run: |
