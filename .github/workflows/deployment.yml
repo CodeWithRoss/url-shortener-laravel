@@ -27,11 +27,13 @@ jobs:
       - name: Install SSH
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          printf "%s" "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/known_hosts
           chmod 700 ~/.ssh
+
+          # Populate known_hosts automatically
+          ssh-keyscan -p "${SSH_PORT}" -H "${SSH_IP}" >> ~/.ssh/known_hosts 2>/dev/null
+          chmod 600 ~/.ssh/known_hosts
 
       - name: List files on remote server
         run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/laravel-api-codewithross.app && ls'
