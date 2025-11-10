@@ -3,6 +3,12 @@ name: Deployment
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual deploy'
+        required: false
+        default: 'manual trigger'
 
 concurrency: main
 
