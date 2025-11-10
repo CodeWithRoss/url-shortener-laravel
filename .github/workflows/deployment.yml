@@ -37,7 +37,7 @@ jobs:
       - name: Ensure .env exists (and generate key if created)
         run: |
           ssh -p "$SSH_PORT" "$SSH_USER@$SSH_IP" '
-            cd ~/repository/laravel-api-codewithross.app
+            cd ~/repository/url-shortener-laravel.codewithross.app
             if [ ! -f .env ]; then
               cp .env.example .env
               php artisan key:generate
@@ -45,13 +45,13 @@ jobs:
           '
 
       - name: Composer Install
-        run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/laravel-api-codewithross.app && composer install'
+        run: ssh -p $SSH_PORT $SSH_USER@$SSH_IP 'cd ~/repository/url-shortener-laravel.codewithross.app && composer install'
 
       - name: Prepare SQLite and migrate
         run: |
           ssh -p "$SSH_PORT" "$SSH_USER@$SSH_IP" '
             set -e
-            cd ~/repository/laravel-api-codewithross.app
+            cd ~/repository/url-shortener-laravel.codewithross.app
 
             # Ensure database file exists
             mkdir -p database
