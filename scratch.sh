@@ -51,9 +51,10 @@ mkdir ./app/Http/Models
 #
 curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/CodeWithRoss/url-shortener-laravel/main/routes/api.php -o ./routes/api.php
 curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/CodeWithRoss/url-shortener-laravel/main/routes/web.php -o ./routes/web.php
+curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/CodeWithRoss/url-shortener-laravel/main/bootstrap/app.php -o ./bootstrap/app.php
 curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/CodeWithRoss/url-shortener-laravel/main/app/Http/Controllers/RedirectController.php -o ./app/Http/Controllers/RedirectController.php
 curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/CodeWithRoss/url-shortener-laravel/main/app/Http/Controllers/UrlController.php -o ./app/Http/Controllers/UrlController.php
-curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/CodeWithRoss/url-shortener-laravel/main/app/Http/Models/Url.php -o ./app/Http/Models/Url.php
+curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/CodeWithRoss/url-shortener-laravel/main/app/Models/Url.php -o ./app/Models/Url.php
 curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/CodeWithRoss/url-shortener-laravel/main/database/migrations/2025_11_10_171119_create_urls_table.php -o ./database/migrations/2025_11_10_171119_create_urls_table.php
 
 #
