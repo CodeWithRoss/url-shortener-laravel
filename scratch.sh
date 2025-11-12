@@ -64,6 +64,12 @@ curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/Co
 docker compose run --rm web bash -c "rm .env; cp .env.example .env; php artisan key:generate"
 
 #
+# SQLite
+#
+touch database/database.sqlite
+docker compose run --rm web bash -c "php artisan migrate"
+
+#
 # Git (post)
 #
 git add .
