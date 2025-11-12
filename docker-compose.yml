@@ -1,0 +1,8 @@
+services:
+  web:
+    image: rossedlin/php-apache:8.4
+    container_name: web
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
