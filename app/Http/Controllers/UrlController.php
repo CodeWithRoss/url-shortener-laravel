@@ -23,12 +23,12 @@ class UrlController extends Controller
             'code' => ['nullable', 'alpha_num', 'min:3', 'max:16'],
         ]);
 
-        $code = $data['code'] ?? $this->generateUniqueCode();
+        $code = $data['code'] ?? Str::random(7);
 
         if (Url::where('code', $code)->exists()) {
-            throw ValidationException::withMessages([
-                'custom_code' => ['This code is already taken.'],
-            ]);
+            return response()->json([
+                'message' => 'This code is already taken.',
+            ], 422);
         }
 
         $url = Url::create([
@@ -41,19 +41,5 @@ class UrlController extends Controller
             'short_url' => url('/' . $url->code),
             'original'  => $url->original,
         ], 201);
-    }
-
-    /**
-     * @param int $length
-     *
-     * @return string
-     */
-    protected function generateUniqueCode(int $length = 7): string
-    {
-        do {
-            $code = Str::random($length);
-        } while (Url::where('code', $code)->exists());
-
-        return $code;
     }
 }
