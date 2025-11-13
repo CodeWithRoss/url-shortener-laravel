@@ -21,12 +21,11 @@ rm -f ./database/database.sqlite
 # Update Environment
 #
 docker compose pull
-docker compose run --rm web composer update
 docker compose run --rm web touch ./database/database.sqlite
-docker compose run --rm web php artisan migrate
+docker compose run --rm web composer setup
 docker compose run --rm web php artisan db:seed
 
 #
 # Git Files
 #
-git add composer.lock
+git add .
