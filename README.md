@@ -6,7 +6,11 @@
 
 # URL Shortener Laravel
 
-todo
+I built a URL Shortener using Laravel and it's API. In 3 minutes.
+
+Simply send a POST request either via Curl or using something like Postman to create the URL.
+
+Then when you enter the URL in the browser, it'll automatically redirect to the longer URL and track the hits in a database.
 
 ## Requirements
 
@@ -20,15 +24,12 @@ todo
 - `cd url-shortener-laravel`
 
 
-- `composer require pusher/pusher-php-server`
-
-
-- `php artisan make:controller RedirectController UrlController`
+- `php artisan make:controller RedirectController`
+- `php artisan make:controller UrlController`
 - `php artisan make:model Url`
 - `php artisan make:migration create_urls_table`
 
 ## Code
-
 
 - `database/migrations/*_create_urls_table.php`
 - `app/Models/Url.php`
