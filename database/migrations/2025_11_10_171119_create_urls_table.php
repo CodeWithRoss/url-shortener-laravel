@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
-            $table->text('original'); // original long url
-            $table->string('code', 16)->unique(); // short code
-            $table->unsignedBigInteger('visits')->default(0);
             $table->timestamps();
-            $table->index('code');
+
+            $table->text('original');
+            $table->string('code', 16)->unique();
+            $table->unsignedBigInteger('visits')->default(0);
         });
     }
 
