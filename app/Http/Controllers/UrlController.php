@@ -40,6 +40,6 @@ class UrlController extends Controller
             'code'      => $url->code,
             'short_url' => url('/' . $url->code),
             'original'  => $url->original,
-        ], 201);
+        ], 201, [], JSON_PRETTY_PRINT);
     }
 }
