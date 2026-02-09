@@ -45,7 +45,7 @@ Then when you enter the URL in the browser, it'll automatically redirect to the 
 
 ## Migration
 
-- `php artisan make:migration create_urls_table`
+- `php artisan migrate`
 
 ## Postman
 
