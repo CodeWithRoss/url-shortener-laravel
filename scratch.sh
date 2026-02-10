@@ -1,5 +1,7 @@
 
-# URL Shortener Laravel
+#
+# Docker
+#
 docker compose down
 docker ps -aq | xargs -r docker stop
 docker ps -aq | xargs -r docker rm

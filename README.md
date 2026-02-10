@@ -47,8 +47,10 @@ Then when you enter the URL in the browser, it'll automatically redirect to the 
 
 - `php artisan migrate`
 
-## Postman
+## Curl
 
+curl --location --request POST 'https://url.edlin.app/api/shorten?url=https://www.codewithross.com/blog/stripe-laravel'
+curl --request POST 'https://url.edlin.app/api/shorten?url=https://www.codewithross.com/blog/stripe-laravel'
 
 
 ## Deploy
